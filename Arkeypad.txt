@@ -1,0 +1,50 @@
+  #include <LiquidCrystal.h> 
+  #include <Keypad.h>
+
+  LiquidCrystal lcd(A0,A1,A2,A3,A4,A5);
+
+  //4x4 Matrix key pad
+  const byte ROWS = 4; // Four rows
+  const byte COLS = 4; // Four columns
+
+  // Define the Keymap
+  char keys[ROWS][COLS] = 
+  {
+  {'7','8','9','/'},
+  {'4','5','6','X'},   
+  {'1','2','3','-'},   
+  {'#','0','=','+'}
+  };
+
+  byte rowPins[ROWS] = { 5, 4, 3, 2 };
+  byte colPins[COLS] = { 6, 7, 8, 9 }; 
+
+  Keypad kpd = Keypad( makeKeymap(keys), rowPins,colPins, ROWS, COLS );
+
+  void setup() 
+  {
+   
+  lcd.begin(16, 2);
+  lcd.print("KEYPAD LCD TEST"); 
+
+  }
+
+  void loop() 
+  {
+
+    char key = kpd.getKey();
+     
+    lcd.setCursor(0, 1);
+
+    lcd.print("SEC= ");
+    
+    lcd.print(millis() / 1000);
+
+    if(key){
+    
+    lcd.setCursor(9, 1);
+    lcd.print("KEY= ");
+    lcd.print(key);
+
+    }  
+  }
