@@ -1,0 +1,89 @@
+int keyVal;
+char keypadPORT at PORTD;
+sbit LCD_RS at RB2_bit;
+sbit LCD_EN at RB3_bit;
+sbit LCD_D4 at RB7_bit;
+sbit LCD_D5 at RB6_bit;
+sbit LCD_D6 at RB5_bit;
+sbit LCD_D7 at RB4_bit;
+
+sbit LCD_RS_Direction at TRISB2_bit;
+sbit LCD_EN_Direction at TRISB3_bit;
+sbit LCD_D4_Direction at TRISB4_bit;
+sbit LCD_D5_Direction at TRISB5_bit;
+sbit LCD_D6_Direction at TRISB6_bit;
+sbit LCD_D7_Direction at TRISB7_bit;
+
+void main() {
+     TRISB = 0X00;
+     Lcd_Init();
+
+  Lcd_Cmd(_LCD_CLEAR);
+  Lcd_Cmd(_LCD_CURSOR_OFF);
+  keypad_Init();
+  Lcd_Out(1,1,"Press a key");
+  delay_ms(500);
+  
+  do{
+     keyVal =0;
+     do
+     keyVal = keypad_key_click();
+     
+     while(!keyVal);
+                    switch(keyVal){
+                    
+                    case 1: keyVal = 55;
+                    break;
+                    
+                    case 2: keyVal = 52;
+                    break;
+                    
+                    case 3: keyVal = 49;
+                    break;
+                    
+                    case 4: keyVal = 32;
+                    break;
+                    
+                    case 5: keyVal = 56;
+                    break;
+                    
+                    case 6: keyVal = 53;
+                    break;
+                    
+                    case 7: keyVal = 50;
+                    break;
+                    
+                    case 8: keyVal = 48;
+                    break;
+                    
+                    case 9: keyVal = 57;
+                    break;
+                    
+                    case 10: keyVal = 54;
+                    break;
+                    
+                    case 11: keyVal = 51;
+                    break;
+                    
+                    case 12: keyVal = 61;
+                    break;
+                    
+                    case 13: keyVal = 47;
+                    break;
+                    
+                    case 14: keyVal = 42;
+                    break;
+                    
+                    case 15: keyVal = 45;
+                    break;
+                    
+                    case 16: keyVal = 43;
+                    break;
+                    
+
+                    }
+                    
+                    LCD_Chr(2,1,keyVal);
+     }
+     while(1);
+}

@@ -1,0 +1,13 @@
+void main() {
+      unsigned char j;
+      TRISC = 0;
+      
+      while(1){
+                PORTC = j;
+                delay_ms(500);
+                
+                j=j<<1;
+                if(J==0)
+                j=1;
+      }
+}
